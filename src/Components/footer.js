@@ -1,44 +1,38 @@
-import React, { useState } from 'react';
-
 const Footer = () => {
 
-  const [title, setState] = useState(
-    );
-
-    const addPosts = async (title,body) =>{
-        await fetch('https://jsonplaceholder.typicode.com/posts', {
-            method: 'POST' ,
-            body: JSON.stringify({
-                title:title,    
-                body: '',
-                userid:Math.random().toString(36).slice(2),
-            }),
-            headers: {
-                'Content-type': 'application/json; charsat=UTF-8',
-            },
+  const addPosts = async (title,body) =>{
+    await fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST' ,
+        body: JSON.stringify({
+            title:title,    
+            body: '',
+            userid:Math.random().toString(36).slice(2),
+        }),
+        headers: {
+            'Content-type': 'application/json; charsat=UTF-8',
+        },
+    })
+        .then((response) => response.json())
+        .then((data) =>{
         })
-            .then((response) => response.json())
-            .then((data) =>{
-            })
-            .catch((err) => {
-                console.log(err.message);
-            });  
-    }
+        .catch((err) => {
+            console.log(err.message);
+        });  
+}
 const handleSubmit = (e) =>{
-    e.preventDefault();
-    // addPosts(this.state.title);
+e.preventDefault();
+addPosts("vikas");
 };
 
 const handleChange = (e) => {
-  const value = e.target.value;
-  // setState({
-  //   ...state,
-  //   [e.target.name]: value
-  // });
+const value = e.target.value;
+// setState({
+//   ...state,
+//   [e.target.name]: value
+// });
 };
 
-
-return (
+  return (
     <footer id="footer">
 
     <div class="footer-newsletter">
@@ -48,9 +42,10 @@ return (
             <h4>Submit a Post</h4>
             <form onSubmit={handleSubmit}>
               <input type="text" name="title" 
-                                required 
-                                value={this.state.title}
-                                onChange= {handleChange}></input>
+                                // required 
+                                // value={this.state.title}
+                                // onChange= {handleChange}
+                                ></input>
               <input type="submit" value="submit"></input>
             </form>
           </div>
@@ -110,10 +105,8 @@ return (
       </div>
     </div>
   </footer>
-  
-
-)
-
-
+  )
 }
+
+
 export default Footer;
